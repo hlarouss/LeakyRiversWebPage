@@ -36,13 +36,12 @@
 //will be put in your project by Bluemix once you add the Cloudant database to your Bluemix
 //application.
 // vcap_services Extraction
-$services_json = json_decode(getenv('VCAP_SERVICES'),true);
-$VcapSvs = $services_json["cloudantNoSQLDB"][0]["credentials"];
+
 //Debug: If you want to see all the variables returned you can use this line of code.
 //var_dump($services_json);
 // Extract the VCAP_SERVICES variables for Cloudant connection.
- $myUsername = $VcapSvs["username"];
- $myPassword = $VcapSvs["password"];
+ $myUsername = "40d4c471-ca2f-466c-922e-547cf658edb1-bluemix";
+ $myPassword = "21a0afd60cb6dffd08de3ebe2a6db2256c42d0896d08d84e71e3bb0729df4fb1";
 
  try {
   // Let's login to the database.
