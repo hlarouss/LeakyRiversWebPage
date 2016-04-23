@@ -20,15 +20,15 @@
   $sag = new Sag($myUsername . ".cloudant.com");
   $sag->login($myUsername, $myPassword);
   $sag->setDatabase("yo");
-    if(!$sag->put("myId", '{"myKey":"Hello World from Cloudant!"}')->body->ok) {
-      error_log('Unable to post a document to Cloudant.');
-    } else {
+    // if(!$sag->put("myId", '{"myKey":"Hello World from Cloudant!"}')->body->ok) {
+    //   error_log('Unable to post a document to Cloudant.');
+    // } else {
   	  // We are now going to read a document from our cloudant database. We are going
   	  // to retrieve the value associated with myKey from the body of the document.
     	  //The SAG PHP library takes care of all the gory details and only retrieves the value.
-  	  $resp = $sag->get('myId')->body->myKey;
+  	  $resp = $sag->get('nameview')->body->myKey;
   	  echo $resp;
-      }
+    //   }
 
 }
 catch(Exception $e) {
