@@ -58,8 +58,8 @@ echo $e->getMessage();
 
                 <?php echo 'query result: ' . $resp[0]->value; ?>
 
-                <?php foreach($resp as something)
-                    echo 'yo: ' . something->value;
+                <?php foreach($resp as &$value)
+                    echo 'yo: ' . $value->value;
                  ?>
 
 			</td>
