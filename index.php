@@ -60,7 +60,7 @@ echo $e->getMessage();
 
                 <?php foreach(something as $resp){
                     echo 'yo: ' . something->value;
-                }
+                } ?>
 
 			</td>
 		</tr>
