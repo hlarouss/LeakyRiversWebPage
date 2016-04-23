@@ -52,7 +52,7 @@ echo $e->getMessage();
 			<td style='width: 30%;'><img class = 'newappIcon' src='images/newapp-icon.png'>
 			</td>
 			<td>
-				<h1 id = "message"> <?php echo "Bye world!"; ?> </h1>
+				<h1 id = "message"> <?php echo "Leaky Rivers"; ?> </h1>
 
 				<p class='description'> <?php echo 'query result: ' . var_dump($resp); ?> </p>
 			</td>
