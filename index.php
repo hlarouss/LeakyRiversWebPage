@@ -56,7 +56,7 @@ echo $e->getMessage();
 
 				<p class='description'> testing json decode: </p>
 
-                <?php echo 'query result: ' . $resp[0]["value"]; ?>
+                <?php echo 'query result: ' . $resp[0]; ?>
 
 			</td>
 		</tr>
