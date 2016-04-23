@@ -29,7 +29,7 @@
   	  $resp = $sag->get('_design/nameview')->body;
 	  echo '<p hi /p>';
 
-  	  echo $resp;
+  	  echo string($resp);
     //   }
 
 }
@@ -63,7 +63,7 @@ echo $e->getMessage();
 
 				<?php
 					echo 'my user' . $myUsername;
-					echo 'query result: ' . $resp;
+					echo 'query result: ' . string($resp) . $resp->value;
 				?>
 			</td>
 		</tr>
