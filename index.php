@@ -63,7 +63,7 @@ echo $e->getMessage();
 
 				<?php
 					echo 'my user' . $myUsername;
-					echo 'query result: ' . string($resp) . $resp->value;
+					echo 'query result: ' . string($resp);
 				?>
 			</td>
 		</tr>
