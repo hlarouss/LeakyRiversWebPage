@@ -58,9 +58,9 @@ echo $e->getMessage();
 
                 <?php echo 'query result: ' . $resp[0]->value; ?>
 
-                <?php foreach(something as $resp){
+                <?php foreach($resp as something)
                     echo 'yo: ' . something->value;
-                } ?>
+                 ?>
 
 			</td>
 		</tr>
