@@ -52,16 +52,9 @@ echo $e->getMessage();
 			<td style='width: 30%;'><img class = 'newappIcon' src='images/newapp-icon.png'>
 			</td>
 			<td>
-				<h1 id = "message"><?php echo "Bye world!"; ?>
-</h1>
-				<p class='description'></p> Thanks for creating a <span class="blue">PHP Starter Application</span>. Get started by reading our <a
-				href="https://www.ng.bluemix.net/docs/#runtimes/php/index.html">documentation</a>
-				or use the Start Coding guide under your app in your dashboard.
+				<h1 id = "message"> <?php echo "Bye world!"; ?> </h1>
 
-				<?php
-					echo 'my user' . $myUsername;
-					echo 'query result: ' . var_dump($resp);
-				?>
+				<p class='description'> <?php echo 'query result: ' . var_dump($resp); ?> </p>
 			</td>
 		</tr>
 	</table>
