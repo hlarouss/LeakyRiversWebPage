@@ -26,7 +26,7 @@
   	  // We are now going to read a document from our cloudant database. We are going
   	  // to retrieve the value associated with myKey from the body of the document.
     	  //The SAG PHP library takes care of all the gory details and only retrieves the value.
-  	  $resp = $sag->get('_design/nameview/_view/nameview')->body;
+  	  $resp = $sag->get('_design/nameview/_view/nameview')->body->rows;
     //   }
 
 }
@@ -57,9 +57,7 @@ echo $e->getMessage();
 				<p class='description'> testing json decode: </p>
 
                 <?php echo 'query result: ' . var_dump($resp); ?>
-                <?php echo 'query result: ' . $resp[0]; ?>
 
-                <?php echo 'query result: ' . $resp["value"]; ?>
 			</td>
 		</tr>
 	</table>
