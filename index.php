@@ -26,7 +26,7 @@
   	  // We are now going to read a document from our cloudant database. We are going
   	  // to retrieve the value associated with myKey from the body of the document.
     	  //The SAG PHP library takes care of all the gory details and only retrieves the value.
-  	  $resp = $sag->get('_design/nameview/_view/nameview')->body->rows;
+  	  $resp = $sag->get('_design/nameview/_view/tweet-view')->body->rows;
     //   }
 
 }
@@ -48,7 +48,7 @@ echo $e->getMessage();
 -->
 <html>
 	<head>
-		<title>Noordwijk, NL</title>
+		<title>Leaky Rivers</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -95,9 +95,12 @@ echo $e->getMessage();
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
-							<header>
+							<!-- <header>
 								<h1>You are in risk</h1>
-							</header>
+							</header> -->
+
+
+
 							<section class="tiles">
 
                                 <?php foreach($resp as &$value)
