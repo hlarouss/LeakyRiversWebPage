@@ -29,7 +29,7 @@
   	  $resp = $sag->get('_design/nameview/_view/nameview')->body;
 	  echo '<p hi /p>';
 
-  	  echo var_dump($resp);
+  	  echo var_dump(json_decode($resp));
     //   }
 
 }
