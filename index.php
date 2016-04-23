@@ -49,6 +49,11 @@ $VcapSvs = $services_json["cloudantNoSQLDB"][0]["credentials"];
   $sag = new Sag($myUsername . ".cloudant.com");
   $sag->login($myUsername, $myPassword);
 
-
+}
+catch(Exception $e) {
+//We sent something to Sag that it didn't expect.
+echo '<p>There Was an Error Getting Data from Cloudant!!!</p>';
+echo $e->getMessage();
+}
 
  ?>
