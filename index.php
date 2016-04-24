@@ -252,6 +252,7 @@ echo $e->getMessage();
 
         map.on('singleclick', function(evt) {
             //if(evt.text) {
+              var coordinate = evt.coordinate;
               var text = evt.text;
               var user = evt.name;
 
