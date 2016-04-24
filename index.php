@@ -180,15 +180,18 @@ echo $e->getMessage();
     })
     });
 
-var latlon = [52.21394215659752, 4.432559078597941];
-function getLocation() {
-   if (navigator.geolocation) {
-       var x = navigator.geolocation.getCurrentPosition();
-       latlon = x.coords.latitude + "," + x.coords.longitude;
-   } else {
+    var latlon = [52.21394215659752, 4.432559078597941];
 
-   }
-}
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+
+        }
+    }
+    function showPosition(position) {
+        latlon = x.coords.latitude + "," + x.coords.longitude;
+    }
 
     var map = new ol.Map({
     layers: [raster, vector],
