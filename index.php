@@ -58,7 +58,7 @@ echo $e->getMessage();
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
-	<body>
+	<body onpageshow="getLocation()">
 		<!-- Wrapper -->
 			<div id="wrapper">
 
@@ -98,7 +98,7 @@ echo $e->getMessage();
 					<div id="main">
 						<div class="inner">
 							<header>
-								<div onload="getLocation()" id="map" class="map"></div>
+								<div id="map" class="map"></div>
                                 <div id="info" class="info"></div>
 							</header>
 
