@@ -97,7 +97,7 @@ echo $e->getMessage();
 
 							<section class="tiles">
 
-                                 <?php foreach($resp as &$value)
+                                 <?php foreach($weather as &$value)
                                  echo '<article class="style1">
                                      <span class="image">
                                          <!-- <img src="images/pic01.jpg" alt="" /> -->
