@@ -53,6 +53,8 @@ echo $e->getMessage();
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
+        <link rel="stylesheet" href="http://openlayers.org/en/v3.15.1/css/ol.css" type="text/css">
+        <script src="http://openlayers.org/en/v3.15.1/build/ol.js"></script>
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
@@ -71,17 +73,17 @@ echo $e->getMessage();
 								</a>
 
 							<!-- Nav -->
-								<nav>
+								<!-- <nav>
 									<ul>
 										<li><a href="#menu">Menu</a></li>
 									</ul>
-								</nav>
+								</nav> -->
 
 						</div>
 					</header>
 
 				<!-- Menu -->
-					<nav id="menu">
+					<!-- <nav id="menu">
 						<h2>Menu</h2>
 						<ul>
 							<li><a href="index.html">Home</a></li>
@@ -90,16 +92,15 @@ echo $e->getMessage();
 							<li><a href="generic.html">Consequat dolor</a></li>
 							<li><a href="elements.html">Elements</a></li>
 						</ul>
-					</nav>
+					</nav> -->
 
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
-							<!-- <header>
-								<h1>You are in risk</h1>
-							</header> -->
-
-
+							<header>
+								<div id="map" class="map"></div>
+                                <div id="info" class="info"></div>
+							</header>
 
 							<section class="tiles">
 
@@ -155,12 +156,71 @@ echo $e->getMessage();
 								</ul>
 							</section>
 							<ul class="copyright">
-								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								<li>&copy; Leaky Rivers. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 							</ul>
 						</div>
 					</footer>
 
 			</div>
+
+            <script>
+    var projection = ol.proj.get('EPSG:3857');
+
+    var raster = new ol.layer.Tile({
+    source: new ol.source.BingMaps({
+    imagerySet: 'Aerial',
+    key: 'AqzR3QSX8denhtQSfY2k-RPalRm7QBcC9kolBk103fshoCpc6HIoIcdv3n9YcOt4'
+    })
+    });
+
+    var vector = new ol.layer.Vector({
+    source: new ol.source.Vector({
+    url: 'data/kml/water.kml',
+    format: new ol.format.KML()
+    })
+    });
+
+    var map = new ol.Map({
+    layers: [raster, vector],
+    target: document.getElementById('map'),
+    view: new ol.View({
+    center: [52.12, 4.25],
+    projection: projection,
+    zoom: 10
+    })
+    });
+
+    var displayFeatureInfo = function(pixel) {
+    var features = [];
+    map.forEachFeatureAtPixel(pixel, function(feature) {
+    features.push(feature);
+    });
+    if (features.length > 0) {
+    var info = [];
+    var i, ii;
+    for (i = 0, ii = features.length; i < ii; ++i) {
+    info.push(features[i].get('name'));
+    }
+    document.getElementById('info').innerHTML = info.join(', ') || '(unknown)';
+    map.getTarget().style.cursor = 'pointer';
+    } else {
+    document.getElementById('info').innerHTML = '&nbsp;';
+    map.getTarget().style.cursor = '';
+    }
+    };
+
+    map.on('pointermove', function(evt) {
+    if (evt.dragging) {
+    return;
+    }
+    var pixel = map.getEventPixel(evt.originalEvent);
+    displayFeatureInfo(pixel);
+    });
+
+    map.on('click', function(evt) {
+    displayFeatureInfo(evt.pixel);
+    });
+</script>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
