@@ -180,26 +180,26 @@ echo $e->getMessage();
     })
     });
 
-    var latlon = new ol.Coordinate({
-        [52.21394215659752, 4.432559078597941]
-    });
-
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-
-        }
-    }
-    function showPosition(position) {
-        latlon = [position.coords.latitude, position.coords.longitude];
-    }
+    // var latlon = new ol.Coordinate({
+    //
+    // });
+    //
+    // function getLocation() {
+    //     if (navigator.geolocation) {
+    //         navigator.geolocation.getCurrentPosition(showPosition);
+    //     } else {
+    //
+    //     }
+    // }
+    // function showPosition(position) {
+    //     latlon = [position.coords.latitude, position.coords.longitude];
+    // }
 
     var map = new ol.Map({
     layers: [raster, vector],
     target: document.getElementById('map'),
     view: new ol.View({
-    center: latlon,
+    center: [4.432559078597941, 52.21394215659752],
     projection: projection,
     zoom: 10
     })
