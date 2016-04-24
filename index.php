@@ -16,6 +16,9 @@
 
   $resp = $sag->get('_design/views/_view/tweet-view')->body->rows;
 
+  $sag->setDatabase("weather");
+  $weather = $sag->get('_design/views/_view/weather-view')->body->rows;
+
 }
 catch(Exception $e) {
 //We sent something to Sag that it didn't expect.
@@ -251,7 +254,7 @@ echo $e->getMessage();
     /**
      * Create an overlay to anchor the popup to the map.
      */
-    var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
+    var overlay = new ol.Overlay(({
       element: container,
       autoPan: true,
       autoPanAnimation: {
@@ -260,22 +263,22 @@ echo $e->getMessage();
     }));
 
     var map = new ol.Map({
-    layers: [raster, vector],
-    target: document.getElementById('map'),
-    view: new ol.View({
-    center: [0, 0],
-    overlays: [overlay],
-    target: 'map',
-    projection: projection,
-    zoom: 10
-    })
+        layers: [raster, vector],
+        target: document.getElementById('map'),
+        view: new ol.View({
+        center: [0, 0],
+        overlays: [overlay],
+        target: 'map',
+        projection: projection,
+        zoom: 10
+        })
     });
 
     map.on('singleclick', function(evt) {
         //if(evt.text) {
           var coordinate = evt.coordinate;
-          var text = evt.text;
-          var user = evt.name;
+          var text = evt.value.text;
+          var user = evt.value.name;
 
           content.innerHTML = '<p>' + name + ' said ' + text + '</p>';
           overlay.setPosition(coordinate);
