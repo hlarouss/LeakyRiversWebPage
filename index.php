@@ -173,8 +173,10 @@ echo $e->getMessage();
         }
     }
 
+    var tweets;
+
     function displayTweets() {
-        var ar = <?php echo json_encode($resp); ?>;
+        tweets = <?php echo json_encode($resp); ?>;
     }
 
     function showPosition(position) {
