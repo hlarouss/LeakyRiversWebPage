@@ -190,7 +190,7 @@ echo $e->getMessage();
         }
     }
     function showPosition(position) {
-        latlon = x.coords.latitude + "," + x.coords.longitude;
+        latlon = position.coords.latitude + "," + position.coords.longitude;
     }
 
     var map = new ol.Map({
