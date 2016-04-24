@@ -26,7 +26,7 @@
     }
     catch(Exception $e) {
     //We sent something to Sag that it didn't expect.
-    echo '<p>There Was an Error Getting Data from Cloudant!!!</p>';
+    echo '<p>There Was an Error Getting Data from the database :/ </p>';
     echo $e->getMessage();
     }
 
@@ -36,7 +36,7 @@
 
 <html>
 	<head>
-		<title>Leaky Rivers</title>
+		<title>Leaky Rivers - NASA SpaceAppChallenge</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -56,7 +56,12 @@
 
 							<!-- Logo -->
 								<a href="index.html" class="logo">
-									<span class="symbol"><img src="images/logo.png" alt="Leaky Rivers" /></span>
+                                    <div class="field half first">
+									    <span class="symbol"><img src="images/logo.png" alt="Leaky Rivers" /></span>
+                                    </div>
+                                    <div class="field half">
+										<input type="text" name="location" id="location" placeholder="Location" />
+									</div>
 								</a>
 
 							<!-- Nav -->
@@ -165,7 +170,7 @@
 								</ul>
 							</section>
 							<ul class="copyright">
-								<li>&copy; Leaky Rivers. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								<li>Leaky Rivers 2016 - NASA SpaceAppChallenge.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 							</ul>
 						</div>
 					</footer>
@@ -303,36 +308,6 @@
     //     //}
     // });
 
-    // var displayFeatureInfo = function(pixel) {
-    // var features = [];
-    // map.forEachFeatureAtPixel(pixel, function(feature) {
-    // features.push(feature);
-    // });
-    // if (features.length > 0) {
-    // var info = [];
-    // var i, ii;
-    // for (i = 0, ii = features.length; i < ii; ++i) {
-    // info.push(features[i].get('name'));
-    // }
-    // document.getElementById('info').innerHTML = info.join(', ') || '(unknown)';
-    // map.getTarget().style.cursor = 'pointer';
-    // } else {
-    // document.getElementById('info').innerHTML = '&nbsp;';
-    // map.getTarget().style.cursor = '';
-    // }
-    // };
-    //
-    // map.on('pointermove', function(evt) {
-    // if (evt.dragging) {
-    // return;
-    // }
-    // var pixel = map.getEventPixel(evt.originalEvent);
-    // displayFeatureInfo(pixel);
-    // });
-    //
-    // map.on('click', function(evt) {
-    // displayFeatureInfo(evt.pixel);
-    // });
 </script>
 
 		<!-- Scripts -->
