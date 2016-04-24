@@ -56,13 +56,11 @@
 
 							<!-- Logo -->
 								<a href="index.html" class="logo">
-                                    <div class="field half first">
-									    <span class="symbol"><img src="images/logo.png" alt="Leaky Rivers" /></span>
-                                    </div>
-                                    <div class="field half">
-										<input type="text" name="location" id="location" placeholder="Location" />
-									</div>
+									<span class="symbol"><img src="images/logo.png" alt="Leaky Rivers" /></span>
 								</a>
+                                <div class="field">
+                                    <input type="text" name="location" id="location" placeholder="Location " />
+                                </div>
 
 							<!-- Nav -->
 								<!-- <nav>
