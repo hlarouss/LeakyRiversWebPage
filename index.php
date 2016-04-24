@@ -197,7 +197,7 @@ echo $e->getMessage();
                    })
                  }),
                  text: new ol.style.Text({
-                   text: tweets[i].value.text, // attribute code
+                   //text: tweets[i].value.text, // attribute code
                    fill: new ol.style.Fill({
                      color: "#FFF" // black text // TODO: Unless circle is dark, then white..
                    })
@@ -212,22 +212,6 @@ echo $e->getMessage();
                   ol.proj.transform(tweets[i].value.coordinates,'EPSG:4326', 'EPSG:3857')
               )
               });
-
-              marker.on('click', function (e) {
-      var $pop = $("#popup").dialog({
-          minWidth: 100,
-          minHeight: 100,
-          position: {
-              'of':  e.browserEvent.getBrowserEvent()
-          }
-      });
-
-      $pop.html('<h3>clicked on <strong>'+ e.content +'</strong></h3>');
-
-      map.addOverlay({
-          element: $pop
-      });
-      });
 
             marker.setStyle(styles[i]);
             features.push(marker);
