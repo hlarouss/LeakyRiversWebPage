@@ -221,11 +221,12 @@ echo $e->getMessage();
               'of':  e.browserEvent.getBrowserEvent()
           }
       });
-      
+
       $pop.html('<h3>clicked on <strong>'+ e.content +'</strong></h3>');
 
       map.addOverlay({
           element: $pop
+      });
       });
 
             marker.setStyle(styles[i]);
