@@ -98,7 +98,7 @@ echo $e->getMessage();
 					<div id="main">
 						<div class="inner">
 							<header>
-								<div id="map" class="map"></div>
+								<div onload="getLocation()" id="map" class="map"></div>
                                 <div id="info" class="info"></div>
 							</header>
 
@@ -180,11 +180,21 @@ echo $e->getMessage();
     })
     });
 
+var latlon = [52.21394215659752, 4.432559078597941];
+function getLocation() {
+   if (navigator.geolocation) {
+       var x = navigator.geolocation.getCurrentPosition();
+       var latlon = x.coords.latitude + "," + x.coords.longitude;
+   } else {
+
+   }
+}
+
     var map = new ol.Map({
     layers: [raster, vector],
     target: document.getElementById('map'),
     view: new ol.View({
-    center: [52.12, 4.25],
+    center: latlon,
     projection: projection,
     zoom: 10
     })
