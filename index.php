@@ -58,7 +58,7 @@ echo $e->getMessage();
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
-	<body onpageshow="getLocation()">
+	<body onpageshow="CenterMap(52.12, 4.25)">
 		<!-- Wrapper -->
 			<div id="wrapper">
 
@@ -195,15 +195,23 @@ echo $e->getMessage();
     //     latlon = [position.coords.latitude, position.coords.longitude];
     // }
 
+
     var map = new ol.Map({
     layers: [raster, vector],
     target: document.getElementById('map'),
     view: new ol.View({
-    center: [4.432559078597941, 52.21394215659752],
+    center: [0, 0],
     projection: projection,
     zoom: 10
     })
     });
+
+    function CenterMap(lat, long) {
+     map.setView(new ol.View({
+            center: ol.proj.transform([lat, long], 'EPSG:3857', 'EPSG:4326'),
+            zoom: 5
+        }));
+    }
 
     var displayFeatureInfo = function(pixel) {
     var features = [];
