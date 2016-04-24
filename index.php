@@ -87,9 +87,9 @@
 					<div id="main">
 						<div class="inner">
 							<header>
-                                <div id="popup" class="popup"></div>
+                                <!-- <div id="popup" class="popup"></div>
                                 <div id="popup-content" class="popup-content"></div>
-                                <div id="popup-closer" class="popup-closer"></div>
+                                <div id="popup-closer" class="popup-closer"></div> -->
 								<div id="map" class="map"></div>
                                 <div id="info" class="info"></div>
 							</header>
@@ -161,9 +161,9 @@
 							<section>
 								<h2>Follow</h2>
 								<ul class="icons">
-									<li><a href="http://twitter.com/leakyrivers" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="http://facebook.com/leakyrivers" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
-                                    <li><a href="https://github.com/LeakyRivers/LeakyRivers-app" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="http://twitter.com/LeakyRivers" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="http://facebook.com/LeakyRivers" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+                                    <li><a href="https://github.com/LeakyRivers" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
 									<!-- <li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
 									<li><a href="#" class="icon style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
 									<li><a href="#" class="icon style2 fa-500px"><span class="label">500px</span></a></li>
@@ -206,12 +206,10 @@
         }
     }
 
-    var tweets;
-    var features = [];
-    var styles = [];
-
     function displayTweets() {
-        tweets = <?php echo json_encode($resp); ?>;
+        var tweets = <?php echo json_encode($resp); ?>;
+        var styles = [];
+        var features = [];
 
         for (i = 0; i < tweets.length; i++) {
 
