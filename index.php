@@ -89,7 +89,7 @@
                                 <div id="popup-content" class="popup-content"></div>
                                 <div id="popup-closer" class="popup-closer"></div> -->
 								<div id="map" class="map"></div>
-                                <div id="info" class="info"></div>
+                                <!-- <div id="info" class="info"></div> -->
 							</header>
 
 							<section class="tiles">
@@ -162,11 +162,6 @@
 									<li><a href="http://twitter.com/LeakyRivers" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
 									<li><a href="http://facebook.com/LeakyRivers" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
                                     <li><a href="https://github.com/LeakyRivers" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
-									<!-- <li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
-									<li><a href="#" class="icon style2 fa-500px"><span class="label">500px</span></a></li>
-									<li><a href="#" class="icon style2 fa-phone"><span class="label">Phone</span></a></li>
-									<li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li> -->
 								</ul>
 							</section>
 							<ul class="copyright">
@@ -189,7 +184,7 @@
 
     var vector = new ol.layer.Vector({
     source: new ol.source.Vector({
-    url: 'data/kml/water.kml',
+    url: 'data/kml/waterNL.kml',
     format: new ol.format.KML()
     })
     });
@@ -225,7 +220,7 @@
                  }),
                  text: new ol.style.Text({
                    text: tweets[i].value.text,
-                   scale: 1.1,
+                   scale: 4,
                    fill: new ol.style.Fill({
                      color: "#FFF"
                    })
@@ -309,36 +304,36 @@
     //     //}
     // });
 
-    var displayFeatureInfo = function(pixel) {
-    var features = [];
-    map.forEachFeatureAtPixel(pixel, function(feature) {
-    features.push(feature);
-    });
-    if (features.length > 0) {
-    var info = [];
-    var i, ii;
-    for (i = 0, ii = features.length; i < ii; ++i) {
-    info.push(features[i].get('name'));
-    }
-    document.getElementById('info').innerHTML = info.join(', ') || '(unknown)';
-    map.getTarget().style.cursor = 'pointer';
-    } else {
-    document.getElementById('info').innerHTML = '&nbsp;';
-    map.getTarget().style.cursor = '';
-    }
-    };
-
-    map.on('pointermove', function(evt) {
-    if (evt.dragging) {
-    return;
-    }
-    var pixel = map.getEventPixel(evt.originalEvent);
-    displayFeatureInfo(pixel);
-    });
-
-    map.on('click', function(evt) {
-    displayFeatureInfo(evt.pixel);
-    });
+    // var displayFeatureInfo = function(pixel) {
+    // var features = [];
+    // map.forEachFeatureAtPixel(pixel, function(feature) {
+    // features.push(feature);
+    // });
+    // if (features.length > 0) {
+    // var info = [];
+    // var i, ii;
+    // for (i = 0, ii = features.length; i < ii; ++i) {
+    // info.push(features[i].get('name'));
+    // }
+    // document.getElementById('info').innerHTML = info.join(', ') || '(unknown)';
+    // map.getTarget().style.cursor = 'pointer';
+    // } else {
+    // document.getElementById('info').innerHTML = '&nbsp;';
+    // map.getTarget().style.cursor = '';
+    // }
+    // };
+    //
+    // map.on('pointermove', function(evt) {
+    // if (evt.dragging) {
+    // return;
+    // }
+    // var pixel = map.getEventPixel(evt.originalEvent);
+    // displayFeatureInfo(pixel);
+    // });
+    //
+    // map.on('click', function(evt) {
+    // displayFeatureInfo(evt.pixel);
+    // });
 </script>
 
 		<!-- Scripts -->
