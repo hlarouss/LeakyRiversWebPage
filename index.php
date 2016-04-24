@@ -202,7 +202,7 @@ echo $e->getMessage();
                    })
                  }),
                  text: new ol.style.Text({
-                   //text: tweets[i].value.text, // attribute code
+                   text: tweets[i].value.text, // attribute code
                    fill: new ol.style.Fill({
                      color: "#FFF" // black text // TODO: Unless circle is dark, then white..
                    })
@@ -235,55 +235,56 @@ echo $e->getMessage();
        displayTweets();
     }
 
-    var container = document.getElementById('popup');
-    var content = document.getElementById('popup-content');
-    var closer = document.getElementById('popup-closer');
-
-
-    /**
-     * Add a click handler to hide the popup.
-     * @return {boolean} Don't follow the href.
-     */
-    closer.onclick = function() {
-      overlay.setPosition(undefined);
-      closer.blur();
-      return false;
-    };
+    // var container = document.getElementById('popup');
+    // var content = document.getElementById('popup-content');
+    // var closer = document.getElementById('popup-closer');
+    //
+    //
+    // /**
+    //  * Add a click handler to hide the popup.
+    //  * @return {boolean} Don't follow the href.
+    //  */
+    // closer.onclick = function() {
+    //   overlay.setPosition(undefined);
+    //   closer.blur();
+    //   return false;
+    // };
 
 
     /**
      * Create an overlay to anchor the popup to the map.
      */
-    var overlay = new ol.Overlay(({
-      element: container,
-      autoPan: true,
-      autoPanAnimation: {
-        duration: 250
-      }
-    }));
+    // var overlay = new ol.Overlay(({
+    //   element: container,
+    //   autoPan: true,
+    //   autoPanAnimation: {
+    //     duration: 250
+    //   }
+    // }));
 
     var map = new ol.Map({
         layers: [raster, vector],
         target: document.getElementById('map'),
         view: new ol.View({
         center: [0, 0],
-        overlays: [overlay],
-        target: 'map',
+        //overlays: [overlay],
+        //target: 'map',
         projection: projection,
         zoom: 10
         })
     });
 
-    map.on('singleclick', function(evt) {
-        //if(evt.text) {
-          var coordinate = evt.coordinate;
-          var text = evt.value.text;
-          var user = evt.value.name;
-
-          content.innerHTML = '<p>' + name + ' said ' + text + '</p>';
-          overlay.setPosition(coordinate);
-        //}
-    });
+    // map.on('singleclick', function(evt) {
+    //     console.log(evt);
+    //     //if(evt.text) {
+    //       var coordinate = evt.coordinate;
+    //       var text = evt.value.text;
+    //       var user = evt.value.name;
+    //
+    //       content.innerHTML = '<p>' + name + ' said ' + text + '</p>';
+    //       overlay.setPosition(coordinate);
+    //     //}
+    // });
 
     var displayFeatureInfo = function(pixel) {
     var features = [];
