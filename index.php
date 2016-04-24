@@ -264,7 +264,6 @@ echo $e->getMessage();
     target: document.getElementById('map'),
     view: new ol.View({
     center: [0, 0],
-    renderer: exampleNS.getRendererFromQueryString(),
     overlays: [overlay],
     target: 'map',
     projection: projection,
