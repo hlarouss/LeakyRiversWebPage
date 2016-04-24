@@ -58,7 +58,7 @@ echo $e->getMessage();
 
 							<!-- Logo -->
 								<a href="index.html" class="logo">
-									<span class="symbol"><img src="images/logo.png" alt="" /></span>
+									<span><img src="images/logo.png" alt="" /></span>
                                     <!--<span class="title">Leaky Rivers</span>-->
 								</a>
 
