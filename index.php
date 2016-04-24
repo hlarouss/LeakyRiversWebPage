@@ -58,7 +58,7 @@ echo $e->getMessage();
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
-	<body onpageshow="CenterMap(52.12, 4.25)">
+	<body onpageshow="getLocation();">
 		<!-- Wrapper -->
 			<div id="wrapper">
 
@@ -98,7 +98,7 @@ echo $e->getMessage();
 					<div id="main">
 						<div class="inner">
 							<header>
-								<div id="map" class="map"></div>
+								<div onload="CenterMap();" id="map" class="map"></div>
                                 <div id="info" class="info"></div>
 							</header>
 
@@ -180,20 +180,18 @@ echo $e->getMessage();
     })
     });
 
-    // var latlon = new ol.Coordinate({
-    //
-    // });
-    //
-    // function getLocation() {
-    //     if (navigator.geolocation) {
-    //         navigator.geolocation.getCurrentPosition(showPosition);
-    //     } else {
-    //
-    //     }
-    // }
-    // function showPosition(position) {
-    //     latlon = [position.coords.latitude, position.coords.longitude];
-    // }
+    var latlon;
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+
+        }
+    }
+    function showPosition(position) {
+        latlon = [position.coords.longitude, position.coords.latitude];
+    }
 
 
     var map = new ol.Map({
@@ -206,12 +204,11 @@ echo $e->getMessage();
     })
     });
 
-    function CenterMap(lat, long) {
-     map.setView(new ol.View({
-            center: ol.proj.transform([lat, long], 'EPSG:3857', 'EPSG:4326'),
-            zoom: 5
-        }));
+    function CenterMap() {
+        map.getView().setCenter(ol.proj.transform(latlon, 'EPSG:4326', 'EPSG:3857'));
+       map.getView().setZoom(10);
     }
+
 
     var displayFeatureInfo = function(pixel) {
     var features = [];
