@@ -3,15 +3,8 @@
 //We need to pull in the Sag PHP library. SAG is an open API used to connect to the Cloudant database.
  //We only need to do this once!
  require('vendor/autoload.php');
-//Get Connection Variables from VCAPS_SERVICES. We first need to pull in our Cloudant database
-//connection variables from the VCAPS_SERVICES environment variable. This environment variable
-//will be put in your project by Bluemix once you add the Cloudant database to your Bluemix
-//application.
-// vcap_services Extraction
 
-//Debug: If you want to see all the variables returned you can use this line of code.
-//var_dump($services_json);
-// Extract the VCAP_SERVICES variables for Cloudant connection.
+//don't try this at home - but it works for now
  $myUsername = "18e196e9-549a-4963-8281-fd6d4dff4381-bluemix";
  $myPassword = "a33e392c6c7ad92ce784c2e37b3fa15912c6ee34fdcb3dde5296ef293fcc8cab";
 
@@ -20,14 +13,8 @@
   $sag = new Sag($myUsername . ".cloudant.com");
   $sag->login($myUsername, $myPassword);
   $sag->setDatabase("tweets");
-    // if(!$sag->put("myId", '{"myKey":"Hello World from Cloudant!"}')->body->ok) {
-    //   error_log('Unable to post a document to Cloudant.');
-    // } else {
-  	  // We are now going to read a document from our cloudant database. We are going
-  	  // to retrieve the value associated with myKey from the body of the document.
-    	  //The SAG PHP library takes care of all the gory details and only retrieves the value.
-  	  $resp = $sag->get('_design/views/_view/tweet-view')->body->rows;
-    //   }
+
+  $resp = $sag->get('_design/views/_view/tweet-view')->body->rows;
 
 }
 catch(Exception $e) {
@@ -41,11 +28,7 @@ echo $e->getMessage();
 
 
 <!DOCTYPE HTML>
-<!--
-	Phantom by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
 <html>
 	<head>
 		<title>Leaky Rivers</title>
@@ -166,7 +149,7 @@ echo $e->getMessage();
             <script>
     var projection = ol.proj.get('EPSG:3857');
 
-    var raster = new ol.layer.Tile({
+    var raster = new o l.layer.Tile({
     source: new ol.source.BingMaps({
     imagerySet: 'Aerial',
     key: 'AqzR3QSX8denhtQSfY2k-RPalRm7QBcC9kolBk103fshoCpc6HIoIcdv3n9YcOt4'
@@ -189,6 +172,11 @@ echo $e->getMessage();
 
         }
     }
+
+    function displayTweets() {
+        var ar = <?php echo json_encode($resp); ?>;
+    }
+
     function showPosition(position) {
         latlon = [position.coords.longitude, position.coords.latitude];
         map.getView().setCenter(ol.proj.transform(latlon, 'EPSG:4326', 'EPSG:3857'));
