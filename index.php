@@ -82,8 +82,8 @@ echo $e->getMessage();
 						<div class="inner">
 							<header>
                                 <div id="popup" class="popup"></div>
-                                <div id="popup" class="popup-content"></div>
-                                <div id="popup" class="popup-closer"></div>
+                                <div id="popup-content" class="popup-content"></div>
+                                <div id="popup-closer" class="popup-closer"></div>
 								<div id="map" class="map"></div>
                                 <div id="info" class="info"></div>
 							</header>
