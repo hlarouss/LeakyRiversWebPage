@@ -223,44 +223,6 @@ echo $e->getMessage();
         var source = vector.getSource();
         source.addFeatures(features);
 
-        var container = document.getElementById('popup');
-        var content = document.getElementById('popup-content');
-        var closer = document.getElementById('popup-closer');
-
-
-        /**
-         * Add a click handler to hide the popup.
-         * @return {boolean} Don't follow the href.
-         */
-        closer.onclick = function() {
-          overlay.setPosition(undefined);
-          closer.blur();
-          return false;
-        };
-
-
-        /**
-         * Create an overlay to anchor the popup to the map.
-         */
-        var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
-          element: container,
-          autoPan: true,
-          autoPanAnimation: {
-            duration: 250
-          }
-        }));
-
-        map.on('singleclick', function(evt) {
-            //if(evt.text) {
-              var coordinate = evt.coordinate;
-              var text = evt.text;
-              var user = evt.name;
-
-              content.innerHTML = '<p><code>' + name + '</code> said <code>' + text + '</code></p>';
-              overlay.setPosition(coordinate);
-            //}
-        });
-
     }
 
     function showPosition(position) {
@@ -269,14 +231,53 @@ echo $e->getMessage();
        map.getView().setZoom(10);
     }
 
+    var container = document.getElementById('popup');
+    var content = document.getElementById('popup-content');
+    var closer = document.getElementById('popup-closer');
+
+
+    /**
+     * Add a click handler to hide the popup.
+     * @return {boolean} Don't follow the href.
+     */
+    closer.onclick = function() {
+      overlay.setPosition(undefined);
+      closer.blur();
+      return false;
+    };
+
+
+    /**
+     * Create an overlay to anchor the popup to the map.
+     */
+    var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
+      element: container,
+      autoPan: true,
+      autoPanAnimation: {
+        duration: 250
+      }
+    }));
+
     var map = new ol.Map({
     layers: [raster, vector],
     target: document.getElementById('map'),
     view: new ol.View({
     center: [0, 0],
+    overlays: [overlay],
     projection: projection,
     zoom: 10
     })
+    });
+
+    map.on('singleclick', function(evt) {
+        //if(evt.text) {
+          var coordinate = evt.coordinate;
+          var text = evt.text;
+          var user = evt.name;
+
+          content.innerHTML = '<p>' + name + ' said ' + text + '</p>';
+          overlay.setPosition(coordinate);
+        //}
     });
 
     var displayFeatureInfo = function(pixel) {
