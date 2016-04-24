@@ -255,7 +255,7 @@ echo $e->getMessage();
               var text = evt.text;
               var user = evt.name;
 
-              content.innerHTML = '<p><code>' + name + '</code> said <code>' + text '</code></p>';
+              content.innerHTML = '<p><code>' + name + '</code> said <code>' + text + '</code></p>';
               overlay.setPosition(coordinate);
             //}
         });
