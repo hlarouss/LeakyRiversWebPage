@@ -13,22 +13,22 @@
   $myPassword = $VcapSvs["password"];
 
  try {
-  // Let's login to the database.
-  $sag = new Sag($myUsername . ".cloudant.com");
-  $sag->login($myUsername, $myPassword);
-  $sag->setDatabase("tweets");
+     // Let's login to the database.
+     $sag = new Sag($myUsername . ".cloudant.com");
+     $sag->login($myUsername, $myPassword);
+     $sag->setDatabase("tweets");
 
-  $resp = $sag->get('_design/views/_view/tweet-view')->body->rows;
+     $resp = $sag->get('_design/views/_view/tweet-view')->body->rows;
 
-  $sag->setDatabase("weather");
-  $weather = $sag->get('_design/views/_view/weather-view')->body->rows;
+     $sag->setDatabase("weather");
+     $weather = $sag->get('_design/views/_view/weather-view')->body->rows;
 
-}
-catch(Exception $e) {
-//We sent something to Sag that it didn't expect.
-echo '<p>There Was an Error Getting Data from Cloudant!!!</p>';
-echo $e->getMessage();
-}
+    }
+    catch(Exception $e) {
+    //We sent something to Sag that it didn't expect.
+    echo '<p>There Was an Error Getting Data from Cloudant!!!</p>';
+    echo $e->getMessage();
+    }
 
  ?>
 
@@ -58,8 +58,7 @@ echo $e->getMessage();
 
 							<!-- Logo -->
 								<a href="index.html" class="logo">
-									<span><img src="images/logo.png" alt="" /></span>
-                                    <!--<span class="title">Leaky Rivers</span>-->
+									<span class="symbol"><img src="images/logo.png" alt="Leaky Rivers" /></span>
 								</a>
 
 							<!-- Nav -->
@@ -144,7 +143,7 @@ echo $e->getMessage();
 						<div class="inner">
 							<section>
 								<h2>Get in touch</h2>
-								<!-- <form method="post" action="#">
+								<form method="post" action="messageUs.php">
 									<div class="field half first">
 										<input type="text" name="name" id="name" placeholder="Name" />
 									</div>
@@ -157,16 +156,16 @@ echo $e->getMessage();
 									<ul class="actions">
 										<li><input type="submit" value="Send" class="special" /></li>
 									</ul>
-								</form> -->
+								</form>
 							</section>
 							<section>
 								<h2>Follow</h2>
 								<ul class="icons">
 									<li><a href="http://twitter.com/leakyrivers" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
-									<!-- <li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="http://facebook.com/leakyrivers" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+                                    <li><a href="https://github.com/LeakyRivers/LeakyRivers-app" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
+									<!-- <li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
 									<li><a href="#" class="icon style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
-									<li><a href="#" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
 									<li><a href="#" class="icon style2 fa-500px"><span class="label">500px</span></a></li>
 									<li><a href="#" class="icon style2 fa-phone"><span class="label">Phone</span></a></li>
 									<li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li> -->
@@ -217,22 +216,22 @@ echo $e->getMessage();
         for (i = 0; i < tweets.length; i++) {
 
             if (!styles[i]) {
-   // In your case you will want to use  image : new ol.style.Icon(({
-   // but this is the example that I have on hand..
+
                styles[i] = new ol.style.Style({
                  image: new ol.style.Circle({
                    radius: 5,
-                //    stroke: new ol.style.Stroke({
-                //      color: '#000'
-                //    }),
+                   stroke: new ol.style.Stroke({
+                     color: '#000'
+                   }),
                    fill: new ol.style.Fill({
-                     color: '#3AF' // attribute colour
+                     color: '#3AF'
                    })
                  }),
                  text: new ol.style.Text({
-                   text: tweets[i].value.text, // attribute code
+                   text: tweets[i].value.text,
+                   scale: 1.1,
                    fill: new ol.style.Fill({
-                     color: "#FFF" // black text // TODO: Unless circle is dark, then white..
+                     color: "#FFF"
                    })
                  })
                });
