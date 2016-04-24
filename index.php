@@ -229,6 +229,7 @@ echo $e->getMessage();
         latlon = [position.coords.longitude, position.coords.latitude];
         map.getView().setCenter(ol.proj.transform(latlon, 'EPSG:4326', 'EPSG:3857'));
        map.getView().setZoom(10);
+       displayTweets();
     }
 
     var container = document.getElementById('popup');
