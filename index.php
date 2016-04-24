@@ -4,9 +4,13 @@
  //We only need to do this once!
  require('vendor/autoload.php');
 
-//don't try this at home - but it works for now
- $myUsername = "18e196e9-549a-4963-8281-fd6d4dff4381-bluemix";
- $myPassword = "a33e392c6c7ad92ce784c2e37b3fa15912c6ee34fdcb3dde5296ef293fcc8cab";
+ $services_json = json_decode(getenv('VCAP_SERVICES'),true);
+ $VcapSvs = $services_json["cloudantNoSQLDB"][0]["credentials"];
+ //Debug: If you want to see all the variables returned you can use this line of code.
+ //var_dump($services_json);
+ // Extract the VCAP_SERVICES variables for Cloudant connection.
+  $myUsername = $VcapSvs["username"];
+  $myPassword = $VcapSvs["password"];
 
  try {
   // Let's login to the database.
@@ -93,7 +97,7 @@ echo $e->getMessage();
 
 							<section class="tiles">
 
-                                <?php foreach($resp as &$value)
+                                 <!-- <?php foreach($resp as &$value)
                                     echo '<article class="style1">
                                         <span class="image">
                                             <img src="images/pic01.jpg" alt="" />
@@ -105,7 +109,43 @@ echo $e->getMessage();
                                             </div>
                                         </a>
                                     </article>';
-                                 ?>
+                                 ?>  -->
+
+                                 <article class="style1">
+                                     <span class="image">
+                                         <!-- <img src="images/pic01.jpg" alt="" /> -->
+                                     </span>
+                                     <a href="generic.html">
+                                         <h2><?php $weather->value->phrase_12char ?></h2>
+                                         <div class="content">
+                                             <p>How it's looking</p>
+                                         </div>
+                                     </a>
+                                 </article>
+
+                                 <article class="style2">
+                                     <span class="image">
+                                         <!-- <img src="images/pic01.jpg" alt="" /> -->
+                                     </span>
+                                     <a href="generic.html">
+                                         <h2><?php $weather->value->sky_cover ?></h2>
+                                         <div class="content">
+                                             <p>Sky cover</p>
+                                         </div>
+                                     </a>
+                                 </article>
+
+                                 <article class="style3">
+                                     <span class="image">
+                                         <!-- <img src="images/pic01.jpg" alt="" /> -->
+                                     </span>
+                                     <a href="generic.html">
+                                         <h2><?php $weather->value->metric->temp ?></h2>
+                                         <div class="content">
+                                             <p>Temperature</p>
+                                         </div>
+                                     </a>
+                                 </article>
 
 							</section>
 						</div>
