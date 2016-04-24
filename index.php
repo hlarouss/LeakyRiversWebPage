@@ -220,7 +220,7 @@
                  }),
                  text: new ol.style.Text({
                    text: tweets[i].value.text,
-                   scale: 4,
+                   scale: 2,
                    fill: new ol.style.Fill({
                      color: "#FFF"
                    })
@@ -238,7 +238,6 @@
 
             marker.setStyle(styles[i]);
             features.push(marker);
-            console.log(tweets[i].value.text);
         }
 
         var source = vector.getSource();
