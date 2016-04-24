@@ -58,8 +58,8 @@ echo $e->getMessage();
 
 							<!-- Logo -->
 								<a href="index.html" class="logo">
-									<span class="symbol"><img src="images/logo.svg" alt="" /></span>
-                                    <span class="title">Leaky Rivers</span>
+									<span class="symbol"><img src="images/logo.png" alt="" /></span>
+                                    <!--<span class="title">Leaky Rivers</span>-->
 								</a>
 
 							<!-- Nav -->
@@ -100,7 +100,7 @@ echo $e->getMessage();
                                  <?php foreach($weather as &$value)
                                  echo '<article class="style1">
                                      <span class="image">
-                                         <!-- <img src="images/pic01.jpg" alt="" /> -->
+                                         <img src="images/pic01.jpg" alt="" />
                                      </span>
                                      <a href="generic.html">
                                          <h2> ' . $value->value->phrase_12char . '</h2>
@@ -112,7 +112,7 @@ echo $e->getMessage();
 
                                 echo ' <article class="style2">
                                      <span class="image">
-                                         <!-- <img src="images/pic01.jpg" alt="" /> -->
+                                         <img src="images/pic01.jpg" alt="" />
                                      </span>
                                      <a href="generic.html">
                                          <h2> ' . $value->value->sky_cover . ' </h2>
@@ -124,7 +124,7 @@ echo $e->getMessage();
 
                                  echo '<article class="style3">
                                      <span class="image">
-                                         <!-- <img src="images/pic01.jpg" alt="" /> -->
+                                         <img src="images/pic01.jpg" alt="" />
                                      </span>
                                      <a href="generic.html">
                                          <h2> ' . $value->value->metric->temp . '</h2>
