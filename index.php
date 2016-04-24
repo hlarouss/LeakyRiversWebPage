@@ -12,21 +12,21 @@
 //Debug: If you want to see all the variables returned you can use this line of code.
 //var_dump($services_json);
 // Extract the VCAP_SERVICES variables for Cloudant connection.
- $myUsername = "40d4c471-ca2f-466c-922e-547cf658edb1-bluemix";
- $myPassword = "21a0afd60cb6dffd08de3ebe2a6db2256c42d0896d08d84e71e3bb0729df4fb1";
+ $myUsername = "18e196e9-549a-4963-8281-fd6d4dff4381-bluemix";
+ $myPassword = "a33e392c6c7ad92ce784c2e37b3fa15912c6ee34fdcb3dde5296ef293fcc8cab";
 
  try {
   // Let's login to the database.
   $sag = new Sag($myUsername . ".cloudant.com");
   $sag->login($myUsername, $myPassword);
-  $sag->setDatabase("yo");
+  $sag->setDatabase("tweets");
     // if(!$sag->put("myId", '{"myKey":"Hello World from Cloudant!"}')->body->ok) {
     //   error_log('Unable to post a document to Cloudant.');
     // } else {
   	  // We are now going to read a document from our cloudant database. We are going
   	  // to retrieve the value associated with myKey from the body of the document.
     	  //The SAG PHP library takes care of all the gory details and only retrieves the value.
-  	  $resp = $sag->get('_design/nameview/_view/tweet-view')->body->rows;
+  	  $resp = $sag->get('_design/views/_view/tweet-view')->body->rows;
     //   }
 
 }
@@ -109,7 +109,7 @@ echo $e->getMessage();
                                             <img src="images/pic01.jpg" alt="" />
                                         </span>
                                         <a href="generic.html">
-                                            <h2>' . $value->value . '</h2>
+                                            <h2>' . $value->value->text . '</h2>
                                             <div class="content">
                                                 <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
                                             </div>
