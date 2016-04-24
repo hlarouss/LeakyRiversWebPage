@@ -180,7 +180,9 @@ echo $e->getMessage();
     })
     });
 
-    var latlon = new ol.Coordinate([52.21394215659752, 4.432559078597941]);
+    var latlon = new ol.Coordinate({
+        [52.21394215659752, 4.432559078597941]
+    });
 
     function getLocation() {
         if (navigator.geolocation) {
