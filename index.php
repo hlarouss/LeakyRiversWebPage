@@ -36,7 +36,7 @@
 
 <html>
 	<head>
-		<title>Leaky Rivers - NASA SpaceAppChallenge</title>
+		<title>Leaky Rivers</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -58,31 +58,31 @@
 								<a href="index.html" class="logo">
 									<span class="symbol"><img src="images/logo.png" alt="Leaky Rivers" /></span>
 								</a>
-                                <div class="field">
+                                <!-- <div class="field">
                                     <input type="text" name="location" id="location" placeholder="Location " />
-                                </div>
+                                </div> -->
 
 							<!-- Nav -->
-								<!-- <nav>
+								<nav>
 									<ul>
 										<li><a href="#menu">Menu</a></li>
 									</ul>
-								</nav> -->
+								</nav>
 
 						</div>
 					</header>
 
 				<!-- Menu -->
-					<!-- <nav id="menu">
+					<nav id="menu">
 						<h2>Menu</h2>
 						<ul>
 							<li><a href="index.html">Home</a></li>
-							<li><a href="generic.html">Ipsum veroeros</a></li>
+							<!-- <li><a href="generic.html">Ipsum veroeros</a></li>
 							<li><a href="generic.html">Tempus etiam</a></li>
-							<li><a href="generic.html">Consequat dolor</a></li>
-							<li><a href="elements.html">Elements</a></li>
+							<li><a href="generic.html">Consequat dolor</a></li> -->
+							<li><a href="index.html">Change Location</a></li>
 						</ul>
-					</nav> -->
+					</nav>
 
 				<!-- Main -->
 					<div id="main">
