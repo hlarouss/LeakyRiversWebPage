@@ -180,7 +180,7 @@ echo $e->getMessage();
     })
     });
 
-    var latlon = [52.21394215659752, 4.432559078597941];
+    var latlon = [4.432559078597941, 52.21394215659752];
 
     function getLocation() {
         if (navigator.geolocation) {
@@ -190,7 +190,7 @@ echo $e->getMessage();
         }
     }
     function showPosition(position) {
-        latlon = position.coords.latitude + "," + position.coords.longitude;
+        latlon = position.coords.longitude + "," + position.coords.latitude;
     }
 
     var map = new ol.Map({
