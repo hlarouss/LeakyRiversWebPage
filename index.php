@@ -97,55 +97,43 @@ echo $e->getMessage();
 
 							<section class="tiles">
 
-                                 <!-- <?php foreach($resp as &$value)
-                                    echo '<article class="style1">
-                                        <span class="image">
-                                            <img src="images/pic01.jpg" alt="" />
-                                        </span>
-                                        <a href="generic.html">
-                                            <h2>' . $value->value->text . '</h2>
-                                            <div class="content">
-                                                <p>' . $value->value->name . '</p>
-                                            </div>
-                                        </a>
-                                    </article>';
-                                 ?>  -->
-
-                                 <article class="style1">
+                                 <?php foreach($resp as &$value)
+                                 echo '<article class="style1">
                                      <span class="image">
                                          <!-- <img src="images/pic01.jpg" alt="" /> -->
                                      </span>
                                      <a href="generic.html">
-                                         <h2><?php $weather->value->phrase_12char ?></h2>
+                                         <h2> ' . $value->value->phrase_12char . '</h2>
                                          <div class="content">
-                                             <p>How it's looking</p>
+                                             <p>How is it looking?</p>
                                          </div>
                                      </a>
-                                 </article>
+                                 </article>';
 
-                                 <article class="style2">
+                                echo ' <article class="style2">
                                      <span class="image">
                                          <!-- <img src="images/pic01.jpg" alt="" /> -->
                                      </span>
                                      <a href="generic.html">
-                                         <h2><?php $weather->value->sky_cover ?></h2>
+                                         <h2> ' . $value->value->sky_cover . ' </h2>
                                          <div class="content">
                                              <p>Sky cover</p>
                                          </div>
                                      </a>
-                                 </article>
+                                 </article>';
 
-                                 <article class="style3">
+                                 echo '<article class="style3">
                                      <span class="image">
                                          <!-- <img src="images/pic01.jpg" alt="" /> -->
                                      </span>
                                      <a href="generic.html">
-                                         <h2><?php $weather->value->metric->temp ?></h2>
+                                         <h2> ' . $value->value->metric->temp . '</h2>
                                          <div class="content">
                                              <p>Temperature</p>
                                          </div>
                                      </a>
-                                 </article>
+                                 </article>';
+                                 ?>
 
 							</section>
 						</div>
@@ -174,7 +162,7 @@ echo $e->getMessage();
 							<section>
 								<h2>Follow</h2>
 								<ul class="icons">
-									<li><a href="#" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="http://twitter.com/leakyrivers" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
 									<!-- <li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
 									<li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
 									<li><a href="#" class="icon style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
