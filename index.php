@@ -149,7 +149,7 @@ echo $e->getMessage();
             <script>
     var projection = ol.proj.get('EPSG:3857');
 
-    var raster = new o l.layer.Tile({
+    var raster = new ol.layer.Tile({
     source: new ol.source.BingMaps({
     imagerySet: 'Aerial',
     key: 'AqzR3QSX8denhtQSfY2k-RPalRm7QBcC9kolBk103fshoCpc6HIoIcdv3n9YcOt4'
