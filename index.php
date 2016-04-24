@@ -184,7 +184,7 @@ var latlon = [52.21394215659752, 4.432559078597941];
 function getLocation() {
    if (navigator.geolocation) {
        var x = navigator.geolocation.getCurrentPosition();
-       var latlon = x.coords.latitude + "," + x.coords.longitude;
+       latlon = x.coords.latitude + "," + x.coords.longitude;
    } else {
 
    }
