@@ -82,6 +82,8 @@ echo $e->getMessage();
 						<div class="inner">
 							<header>
                                 <div id="popup" class="popup"></div>
+                                <div id="popup" class="popup-content"></div>
+                                <div id="popup" class="popup-closer"></div>
 								<div id="map" class="map"></div>
                                 <div id="info" class="info"></div>
 							</header>
@@ -220,6 +222,43 @@ echo $e->getMessage();
 
         var source = vector.getSource();
         source.addFeatures(features);
+
+        var container = document.getElementById('popup');
+        var content = document.getElementById('popup-content');
+        var closer = document.getElementById('popup-closer');
+
+
+        /**
+         * Add a click handler to hide the popup.
+         * @return {boolean} Don't follow the href.
+         */
+        closer.onclick = function() {
+          overlay.setPosition(undefined);
+          closer.blur();
+          return false;
+        };
+
+
+        /**
+         * Create an overlay to anchor the popup to the map.
+         */
+        var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */ ({
+          element: container,
+          autoPan: true,
+          autoPanAnimation: {
+            duration: 250
+          }
+        }));
+
+        map.on('singleclick', function(evt) {
+            //if(evt.text) {
+              var text = evt.text;
+              var user = evt.name;
+
+              content.innerHTML = '<p><code>' + name + '</code> said <code>' + text '</code></p>';
+              overlay.setPosition(coordinate);
+            //}
+        });
 
     }
 
