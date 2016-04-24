@@ -55,7 +55,7 @@
 						<div class="inner">
 
 							<!-- Logo -->
-								<a href="index.html" class="logo">
+								<a href="index.php" class="logo">
 									<span class="symbol"><img src="images/logo.png" alt="Leaky Rivers" /></span>
 								</a>
                                 <!-- <div class="field">
@@ -76,11 +76,8 @@
 					<nav id="menu">
 						<h2>Menu</h2>
 						<ul>
-							<li><a href="index.html">Home</a></li>
-							<!-- <li><a href="generic.html">Ipsum veroeros</a></li>
-							<li><a href="generic.html">Tempus etiam</a></li>
-							<li><a href="generic.html">Consequat dolor</a></li> -->
-							<li><a href="index.html">Change Location</a></li>
+							<li><a href="index.php">Home</a></li>
+							<li><a href="index.php">Change Location</a></li>
 						</ul>
 					</nav>
 
@@ -102,7 +99,7 @@
                                      <span class="image">
                                          <img src="images/pic01.jpg" alt="" />
                                      </span>
-                                     <a href="generic.html">
+                                     <a href="#">
                                          <h2> ' . $value->value->phrase_12char . '</h2>
                                          <div class="content">
                                              <p>How is it looking?</p>
@@ -114,7 +111,7 @@
                                      <span class="image">
                                          <img src="images/pic01.jpg" alt="" />
                                      </span>
-                                     <a href="generic.html">
+                                     <a href="#">
                                          <h2> ' . $value->value->sky_cover . ' </h2>
                                          <div class="content">
                                              <p>Sky cover</p>
@@ -126,7 +123,7 @@
                                      <span class="image">
                                          <img src="images/pic01.jpg" alt="" />
                                      </span>
-                                     <a href="generic.html">
+                                     <a href="#">
                                          <h2> ' . $value->value->metric->temp . '&#x2103  </h2>
                                          <div class="content">
                                              <p>Temperature</p>
