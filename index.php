@@ -127,7 +127,7 @@ echo $e->getMessage();
                                          <img src="images/pic01.jpg" alt="" />
                                      </span>
                                      <a href="generic.html">
-                                         <h2> ' . $value->value->metric->temp . '</h2>
+                                         <h2> ' . $value->value->metric->temp . '&#x2103  </h2>
                                          <div class="content">
                                              <p>Temperature</p>
                                          </div>
