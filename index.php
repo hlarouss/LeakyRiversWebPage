@@ -98,7 +98,7 @@ echo $e->getMessage();
 					<div id="main">
 						<div class="inner">
 							<header>
-								<div onload="CenterMap();" id="map" class="map"></div>
+								<div id="map" class="map"></div>
                                 <div id="info" class="info"></div>
 							</header>
 
@@ -191,8 +191,9 @@ echo $e->getMessage();
     }
     function showPosition(position) {
         latlon = [position.coords.longitude, position.coords.latitude];
+        map.getView().setCenter(ol.proj.transform(latlon, 'EPSG:4326', 'EPSG:3857'));
+       map.getView().setZoom(10);
     }
-
 
     var map = new ol.Map({
     layers: [raster, vector],
@@ -203,12 +204,6 @@ echo $e->getMessage();
     zoom: 10
     })
     });
-
-    function CenterMap() {
-        map.getView().setCenter(ol.proj.transform(latlon, 'EPSG:4326', 'EPSG:3857'));
-       map.getView().setZoom(10);
-    }
-
 
     var displayFeatureInfo = function(pixel) {
     var features = [];
