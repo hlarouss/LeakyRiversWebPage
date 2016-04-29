@@ -198,43 +198,29 @@
 
                 function displayTweets() {
                     var tweets = <?php echo json_encode($resp); ?>;
-                    var styles = [];
+
                     var features = [];
 
                     for (i = 0; i < tweets.length; i++) {
 
                         if (!styles[i]) {
 
-                           styles[i] = new ol.style.Style({
-                             image: new ol.style.Circle({
-                               radius: 5,
-                               stroke: new ol.style.Stroke({
-                                 color: '#000'
-                               }),
-                               fill: new ol.style.Fill({
-                                 color: '#3AF'
-                               })
-                             }),
-                             text: new ol.style.Text({
-                               text: tweets[i].value.text,
-                               scale: 2,
-                               fill: new ol.style.Fill({
-                                 color: "#FFF"
-                               })
-                             })
-                           });
-                         }
+                            var iconFeature = new ol.Feature({
+                                geometry: new ol.geom.Point(ol.proj.transform(tweets[i].value.coordinates,'EPSG:4326', 'EPSG:3857')),
+                                text: tweets[i].value.text
+                            });
 
-                        var marker = new ol.Feature({
-                            content: tweets[i].value.text,
-                            mapid: i,
-                            geometry: new ol.geom.Point(
-                              ol.proj.transform(tweets[i].value.coordinates,'EPSG:4326', 'EPSG:3857')
-                          )
-                          });
+                            var iconStyle = new ol.style.Style({
+                                image: new ol.style.Icon(({
+                                 anchor: [0.5, 46],
+                                 anchorXUnits: 'fraction',
+                                 anchorYUnits: 'pixels',
+                                 src: 'images/icon.png'
+                               }))
+                             });
 
-                        marker.setStyle(styles[i]);
-                        features.push(marker);
+                        iconFeature.setStyle(iconStyle);
+                        features.push(iconFeature);
                     }
 
                     var source = vector.getSource();
@@ -255,9 +241,49 @@
                     view: new ol.View({
                     center: [0, 0],
                     projection: projection,
-                    zoom: 10
+                    zoom: 3
                     })
                 });
+
+                var element = document.getElementById('popup');
+
+                var popup = new ol.Overlay({
+                    element: element,
+                    positioning: 'bottom-center',
+                    stopEvent: false
+                  });
+
+                map.addOverlay(popup);
+
+                  // display popup on click
+                  map.on('click', function(evt) {
+                    var feature = map.forEachFeatureAtPixel(evt.pixel,
+                        function(feature) {
+                          return feature;
+                        });
+                    if (feature) {
+                      popup.setPosition(evt.coordinate);
+                      $(element).popover({
+                        'placement': 'top',
+                        'html': true,
+                        'content': feature.get('text')
+                      });
+                      $(element).popover('show');
+                    } else {
+                      $(element).popover('destroy');
+                    }
+                  });
+
+                  // change mouse cursor when over marker
+                  map.on('pointermove', function(e) {
+                    if (e.dragging) {
+                      $(element).popover('destroy');
+                      return;
+                    }
+                    var pixel = map.getEventPixel(e.originalEvent);
+                    var hit = map.hasFeatureAtPixel(pixel);
+                    map.getTarget().style.cursor = hit ? 'pointer' : '';
+                  });
             </script>
 
 		<!-- Scripts -->
