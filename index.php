@@ -203,21 +203,19 @@
 
                     for (i = 0; i < tweets.length; i++) {
 
-                        if (!styles[i]) {
+                        var iconFeature = new ol.Feature({
+                            geometry: new ol.geom.Point(ol.proj.transform(tweets[i].value.coordinates,'EPSG:4326', 'EPSG:3857')),
+                            text: tweets[i].value.text
+                        });
 
-                            var iconFeature = new ol.Feature({
-                                geometry: new ol.geom.Point(ol.proj.transform(tweets[i].value.coordinates,'EPSG:4326', 'EPSG:3857')),
-                                text: tweets[i].value.text
-                            });
-
-                            var iconStyle = new ol.style.Style({
-                                image: new ol.style.Icon(({
-                                 anchor: [0.5, 46],
-                                 anchorXUnits: 'fraction',
-                                 anchorYUnits: 'pixels',
-                                 src: 'images/icon.png'
-                               }))
-                             });
+                        var iconStyle = new ol.style.Style({
+                            image: new ol.style.Icon(({
+                             anchor: [0.5, 46],
+                             anchorXUnits: 'fraction',
+                             anchorYUnits: 'pixels',
+                             src: 'images/icon.png'
+                           }))
+                         });
 
                         iconFeature.setStyle(iconStyle);
                         features.push(iconFeature);
