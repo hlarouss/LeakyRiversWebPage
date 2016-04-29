@@ -85,11 +85,8 @@
 					<div id="main">
 						<div class="inner">
 							<header>
-                                <!-- <div id="popup" class="popup"></div>
-                                <div id="popup-content" class="popup-content"></div>
-                                <div id="popup-closer" class="popup-closer"></div> -->
+                                <div id="popup" class="popup"></div>
 								<div id="map" class="map"></div>
-                                <!-- <div id="info" class="info"></div> -->
 							</header>
 
 							<section class="tiles">
@@ -173,137 +170,95 @@
 			</div>
 
             <script>
-    var projection = ol.proj.get('EPSG:3857');
+                var projection = ol.proj.get('EPSG:3857');
 
-    var raster = new ol.layer.Tile({
-    source: new ol.source.BingMaps({
-    imagerySet: 'Aerial',
-    key: 'AqzR3QSX8denhtQSfY2k-RPalRm7QBcC9kolBk103fshoCpc6HIoIcdv3n9YcOt4'
-    })
-    });
+                var raster = new ol.layer.Tile({
+                    source: new ol.source.BingMaps({
+                        imagerySet: 'Aerial',
+                        key: 'AqzR3QSX8denhtQSfY2k-RPalRm7QBcC9kolBk103fshoCpc6HIoIcdv3n9YcOt4'
+                    })
+                });
 
-    var vector = new ol.layer.Vector({
-    source: new ol.source.Vector({
-    url: 'data/kml/waterNL.kml',
-    format: new ol.format.KML()
-    })
-    });
+                var vector = new ol.layer.Vector({
+                    source: new ol.source.Vector({
+                        url: 'data/kml/waterNL.kml',
+                        format: new ol.format.KML()
+                    })
+                });
 
-    var latlon;
+                var latlon;
 
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
+                function getLocation() {
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(showPosition);
+                    } else {
 
-        }
-    }
+                    }
+                }
 
-    function displayTweets() {
-        var tweets = <?php echo json_encode($resp); ?>;
-        var styles = [];
-        var features = [];
+                function displayTweets() {
+                    var tweets = <?php echo json_encode($resp); ?>;
+                    var styles = [];
+                    var features = [];
 
-        for (i = 0; i < tweets.length; i++) {
+                    for (i = 0; i < tweets.length; i++) {
 
-            if (!styles[i]) {
+                        if (!styles[i]) {
 
-               styles[i] = new ol.style.Style({
-                 image: new ol.style.Circle({
-                   radius: 5,
-                   stroke: new ol.style.Stroke({
-                     color: '#000'
-                   }),
-                   fill: new ol.style.Fill({
-                     color: '#3AF'
-                   })
-                 }),
-                 text: new ol.style.Text({
-                   text: tweets[i].value.text,
-                   scale: 2,
-                   fill: new ol.style.Fill({
-                     color: "#FFF"
-                   })
-                 })
-               });
-             }
+                           styles[i] = new ol.style.Style({
+                             image: new ol.style.Circle({
+                               radius: 5,
+                               stroke: new ol.style.Stroke({
+                                 color: '#000'
+                               }),
+                               fill: new ol.style.Fill({
+                                 color: '#3AF'
+                               })
+                             }),
+                             text: new ol.style.Text({
+                               text: tweets[i].value.text,
+                               scale: 2,
+                               fill: new ol.style.Fill({
+                                 color: "#FFF"
+                               })
+                             })
+                           });
+                         }
 
-            var marker = new ol.Feature({
-                content: tweets[i].value.text,
-                mapid: i,
-                geometry: new ol.geom.Point(
-                  ol.proj.transform(tweets[i].value.coordinates,'EPSG:4326', 'EPSG:3857')
-              )
-              });
+                        var marker = new ol.Feature({
+                            content: tweets[i].value.text,
+                            mapid: i,
+                            geometry: new ol.geom.Point(
+                              ol.proj.transform(tweets[i].value.coordinates,'EPSG:4326', 'EPSG:3857')
+                          )
+                          });
 
-            marker.setStyle(styles[i]);
-            features.push(marker);
-        }
+                        marker.setStyle(styles[i]);
+                        features.push(marker);
+                    }
 
-        var source = vector.getSource();
-        source.addFeatures(features);
+                    var source = vector.getSource();
+                    source.addFeatures(features);
 
-    }
+                }
 
-    function showPosition(position) {
-        latlon = [position.coords.longitude, position.coords.latitude];
-        map.getView().setCenter(ol.proj.transform(latlon, 'EPSG:4326', 'EPSG:3857'));
-       map.getView().setZoom(10);
-       displayTweets();
-    }
+                function showPosition(position) {
+                    latlon = [position.coords.longitude, position.coords.latitude];
+                    map.getView().setCenter(ol.proj.transform(latlon, 'EPSG:4326', 'EPSG:3857'));
+                    map.getView().setZoom(10);
+                    displayTweets();
+                }
 
-    // var container = document.getElementById('popup');
-    // var content = document.getElementById('popup-content');
-    // var closer = document.getElementById('popup-closer');
-    //
-    //
-    // /**
-    //  * Add a click handler to hide the popup.
-    //  * @return {boolean} Don't follow the href.
-    //  */
-    // closer.onclick = function() {
-    //   overlay.setPosition(undefined);
-    //   closer.blur();
-    //   return false;
-    // };
-
-
-    /**
-     * Create an overlay to anchor the popup to the map.
-     */
-    // var overlay = new ol.Overlay(({
-    //   element: container,
-    //   autoPan: true,
-    //   autoPanAnimation: {
-    //     duration: 250
-    //   }
-    // }));
-
-    var map = new ol.Map({
-        layers: [raster, vector],
-        target: document.getElementById('map'),
-        view: new ol.View({
-        center: [0, 0],
-        //overlays: [overlay],
-        //target: 'map',
-        projection: projection,
-        zoom: 10
-        })
-    });
-
-    // map.on('singleclick', function(evt) {
-    //     console.log(evt);
-    //     //if(evt.text) {
-    //       var coordinate = evt.coordinate;
-    //       var text = evt.value.text;
-    //       var user = evt.value.name;
-    //
-    //       content.innerHTML = '<p>' + name + ' said ' + text + '</p>';
-    //       overlay.setPosition(coordinate);
-    //     //}
-    // });
-
-</script>
+                var map = new ol.Map({
+                    layers: [raster, vector],
+                    target: document.getElementById('map'),
+                    view: new ol.View({
+                    center: [0, 0],
+                    projection: projection,
+                    zoom: 10
+                    })
+                });
+            </script>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
